@@ -16,12 +16,21 @@
     </div>
     <div class="nav-list">
       <ul>
-        <a href="#"><li>Zaloguj się</li></a>
+        <a href="{{ url_for('login')}}"><li>Zaloguj się</li></a>
         <a href="{{ url_for('register')}}"><li>Rejestracja</li></a>
       </ul>
     </div>
   </nav>
   <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     {% block content %}
     {% endblock %}
   </main>

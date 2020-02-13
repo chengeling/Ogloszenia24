@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="content-section">
+    <h1>Logowanie</h1>
+    <form action=""method='POST'>
+      {{ form.hidden_tag() }}
+        <div class="form-group">
+          <div class='label'>
+            {{ form.email.label() }}
+          </div>
+          <div class='input-field'>
+            {{ form.email(class='input')}}
+          </div>
+          {% if form.email.errors %}
+            {% for error in form.email.errors %}
+              <span>  {{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <div class='label'>
+            {{ form.password.label(class='label') }}
+          </div>
+          <div class='input-field'>
+            {{ form.password(class='input')}}
+          </div>
+          {% if form.password.errors %}
+            {% for error in form.password.errors %}
+              <span> {{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.submit(id='submitbtn') }}
+        </div>
+    </form>
+    <div>
+      <p>Zapomniałes hasła? <a href="{{ url_for('login')  }}" class="log-in">Przypomnij hasło</a></p>
+      <p>Potrzebujesz konta? <a href="{{ url_for('register')  }}" class="log-in">Załóż konto</a> </p>
+    </div>
+  </div>
+{% endblock %}

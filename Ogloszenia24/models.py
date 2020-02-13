@@ -1,6 +1,10 @@
-from Ogloszenia24 import db
+from Ogloszenia24 import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
+
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(user_id))
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -11,6 +15,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f"Uzytkownik('{self.username}', '{self.email}'"
+
 
 class Advert(db.Model):
     id = db.Column(db.Integer, primary_key=True)
