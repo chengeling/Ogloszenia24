@@ -1,12 +1,13 @@
 from Ogloszenia24 import app, db, bcrypt
 from Ogloszenia24.models import User, Advert
 from flask import render_template, url_for, flash, redirect
-from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm
+from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, SearchForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    form = SearchForm()
+    return render_template('home.html', form=form)
 
 @app.route('/rejestracja', methods=['GET', 'POST'])
 def register():
@@ -31,3 +32,21 @@ def login():
             login_user(user)
             return redirect(url_for('home'))
     return render_template('login.html', form=form)
+
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+@app.route("/dodaj-ogloszenie", methods=['GET', 'POST'])
+@login_required
+def add_advert():
+    form = AdvertForm()
+    if form.validate_on_submit():
+        advert = Advert(title = form.title.data, content = form.content.data, category = form.category.data, user_id = current_user.get_id())
+        db.session.add(advert)
+        db.session.commit()
+        flash("Pomyślnie dodano ogłoszenie!")
+        return redirect(url_for('home'))
+    return render_template('advert.html', form=form)

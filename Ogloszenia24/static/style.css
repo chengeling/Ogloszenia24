@@ -5,11 +5,10 @@
 }
 
 nav{
-  background-color: #D79922;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 10vh;
+  background-color: #fffdf7;
 }
 
 .nav-logo{
@@ -26,6 +25,25 @@ ul{
   display: flex;
 }
 
+.nav-list ul li{
+  border: 1.5px solid #F64C72;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #242582;
+  color: #E3E2DF;
+}
+
+#add{
+    background-color: #F64C72;
+    border: 1.5px solid #242582;
+}
+
+.nav-list ul li a{
+  margin: auto;
+}
+
+
 ul a {
   text-decoration: none;
   color: #FEFFFF;
@@ -37,11 +55,18 @@ a{
   text-decoration: none;
 }
 
+h1{
+  color: white;
+}
+
 main{
   background-color: #fcfff2;
   padding: 10px;
   display: flex;
   justify-content: center;
+  background-image: url("mainphoto.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 90vh;
 }
 
@@ -50,21 +75,18 @@ main{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
-.categories{
+
+.search-box{
+  background-color: #2F2FA2;
+  width: 60%;
+  height: 60px;
+  border-radius: 20px;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
-  width: 70%;
-  padding: 10px;
-}
-
-.category-item{
-  margin-bottom: 20px;
-  display: flex;
   align-items: center;
-  justify-content: space-around;
 }
 
 .form-group{
@@ -76,5 +98,29 @@ main{
 .register-form{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #05386B;
+  border-radius: 10px;
+  width: 40%;
+  height: 300px;
+}
+
+.category-section{
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  margin-top: 15px;
+  padding: 20px;
+}
+
+.row{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.category-item{
+  display: flex;
   align-items: center;
 }
