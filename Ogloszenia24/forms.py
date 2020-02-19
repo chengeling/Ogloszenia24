@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from Ogloszenia24.models import User
 
@@ -7,7 +7,7 @@ class RegistrationForm(FlaskForm):
     username = StringField("Nazwa użytkownika", validators=[DataRequired(), Length(min=5, max=20)])
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField("Hasło", validators=[DataRequired()])
-    confirm_password = StringField("Potwierdź hasło", validators=[DataRequired(), EqualTo('password')])
+    confirm_password = PasswordField("Potwierdź hasło", validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField("Rejestracja")
 
     def validate_username(self, username):
@@ -29,8 +29,10 @@ class LoginForm(FlaskForm):
 class AdvertForm(FlaskForm):
     title = StringField('Nazwa ogłoszenia', validators=[DataRequired()])
     content = TextAreaField('Treść', validators=[DataRequired()])
-    category = SelectField('Kategoria', validators=[DataRequired()], choices=[('moto','Motoryzacja'), ('nier','Nieruchomości'), ('elek','Elektronika'), ('prac',
-    'Praca'), ('zab','Zabawki'), ('odz','Odzież'), ('obw','Obuwie'), ('spt','Sport'), ('slw','Siłownia'), ('odzy','Odżywianie'), ('zab','Zabytki'), ('mbl','Meble')])
+    category = SelectField('Kategoria', validators=[DataRequired()], choices=[('motoryzacja','Motoryzacja'), ('nieruchomosci','Nieruchomości'), ('elektronika','Elektronika'), ('praca',
+    'Praca'), ('zabawki','Zabawki'), ('odziez','Odzież'), ('obuwie','Obuwie'), ('sport','Sport'), ('silownia','Siłownia'), ('odzywianie','Odżywianie'), ('zabytki','Zabytki'), ('meble','Meble')])
+    price = StringField('Cena', validators=[DataRequired()])
+    city = StringField('Miasto', validators=[DataRequired()])
     submit = SubmitField('Dodaj')
 
 class SearchForm(FlaskForm):

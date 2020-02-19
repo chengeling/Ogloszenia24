@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="filter-ads">
+  <div class="category-section-search">
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search', category='motoryzacja') }}">Motoryzacja</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='nieruchomsci') }}">Nieruchomości</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='elektronika') }}">Elektronika</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='praca') }}">Praca</a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search', category='zabawki') }}">Zabawki</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='odziez') }}">Odzież</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='obuwie') }}">Obuwie</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='sport') }}">Sport</a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search', category='silownia') }}">Siłownia</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='odzywianie') }}">Odżywianie</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='zabytki') }}">Zabytki</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search', category='meble') }}">Meble</a>
+          </div>
+        </div>
+   </div>
+  <div class="ad-list">
+    {% if not ads %}
+      <h1>Brak ogłoszeń</h1>
+    {% else %}
+      {% for advert in ads %}
+        <div class='ad'>
+          <a href='{{ url_for('show_advert', advert_id = advert.id) }}'><h2>{{ advert.title }}</h2></a>
+          <p>Data opublikowania: {{ advert.date.strftime('%Y-%m-%d') }}</p>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

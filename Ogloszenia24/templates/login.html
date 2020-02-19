@@ -2,33 +2,37 @@
 {% block content %}
 <div class="register-form">
   <div class="log-in">
-    <h2>Zaloguj się</h2>
+    <img src="/static/user-icon.png" alt="" height="100px" width="100px">
   </div>
-  <form action="" method='POST'>
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-      {{ form.email.label }}
-      {{ form.email }}
-      {% if form.email.errors %}
-        <ul class="errors">
-          {% for error in form.email.errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.password.label }}
-      {{ form.password }}
-      {% if form.password.errors %}
-        <ul class="errors">
-          {% for error in form.password.errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    {{ form.submit }}
-  </form>
+  <div class="login-form register-form">
+    <form action="" method='POST' class='form'>
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        {{ form.email.label }}
+        {{ form.email }}
+        {% if form.email.errors %}
+          <ul class="errors">
+            {% for error in form.email.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.password.label }}
+        {{ form.password }}
+        {% if form.password.errors %}
+          <ul class="errors">
+            {% for error in form.password.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="submit">
+        {{ form.submit (class='sbt-btn') }}
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}

@@ -1,8 +1,10 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="register-form">
-  <h2>Rejestracja</h2>
-  <form action="" method='POST'>
+  <div class="log-in">
+    <img src="/static/register-icon.png" alt="" height="100px" width="100px">
+  </div>
+  <form action="" method='POST' class='form'>
     {{ form.hidden_tag() }}
     <div class="form-group">
       {{ form.username.label }}
@@ -48,7 +50,9 @@
         </ul>
       {% endif %}
     </div>
-    {{ form.submit }}
+    <div class="submit">
+      {{ form.submit (class='sbt-btn') }}
+    </div>
   </form>
 </div>
 {% endblock %}

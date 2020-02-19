@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="user-info">
+  <h2>{{ user.username }}</h2>
+  <p>Posiadasz {{ number_of_ads }} ogłoszeń</p>
+  <h2>Twoje ogłoszenia: </h2>
+  <div class="user-ads">
+    {% for ad in ads %}
+    <div class="user-ad">
+      <h2><a href="{{ url_for('show_advert', advert_id=ad.id) }}"> {{ ad.title }}</a></h2>
+      <hr>
+      <p>Kategoria: <a href="{{ url_for('search', category=ad.category) }}"> {{ ad.category }} </a></p>
+      <p>Cena: {{ ad.price }} zł</p>
+      <small> Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
