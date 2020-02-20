@@ -72,8 +72,9 @@
   <div class="newest-ads">
     {% for ad in ads.items %}
       <div class="newest-ad">
-        <a href="{{ url_for('show_advert', advert_id=ad.id) }}"> {{ ad.title }} </a>
-        <p>Kategoria: {{ ad.category }}</p>
+        <h2><a href="{{ url_for('show_advert', advert_id=ad.id) }}"> {{ ad.title }} </a></h2>
+        <p>Kategoria: <a href="{{ url_for('search', category=ad.category) }}"> {{ ad.category }} </a></p>
+        <p>Cena: {{ ad.price }} zł</p>
         <small>Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
       </div>
     {% endfor %}

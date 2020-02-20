@@ -1,0 +1,12 @@
+Co jeszcze do zrobienia
+Backend:
+- edycja profilu
+- przypominenie has�a
+- wyszukiwarka og�osze�
+- wysy�anie wiadomo�ci do og�oszenia
+- filtrowanie po miastach, cenach
+- paginacja
+
+Frontend:
+- responsywnosc
+- ogolnie chujnia jest

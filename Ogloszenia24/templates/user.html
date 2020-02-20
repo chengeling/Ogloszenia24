@@ -12,6 +12,8 @@
       <p>Kategoria: <a href="{{ url_for('search', category=ad.category) }}"> {{ ad.category }} </a></p>
       <p>Cena: {{ ad.price }} zł</p>
       <small> Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
+      <a href="{{ url_for('update_advert', advert_id=ad.id) }}">Edytuj ogłoszenie</a>
+      <a href="{{ url_for('delete_advert', advert_id=ad.id) }}">Usuń ogłoszenie</a>
     </div>
     {% endfor %}
   </div>

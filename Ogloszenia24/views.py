@@ -1,7 +1,7 @@
 from Ogloszenia24 import app, db, bcrypt
 from Ogloszenia24.models import User, Advert
-from flask import render_template, url_for, flash, redirect
-from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, SearchForm
+from flask import render_template, url_for, flash, redirect, abort
+from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, SearchForm, UpdateAccountForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/',  methods=['GET', 'POST'])
@@ -43,20 +43,21 @@ def logout():
 @login_required
 def add_advert():
     form = AdvertForm()
+    title_form = "Dodaj ogłoszenie"
     if form.validate_on_submit():
         advert = Advert(title = form.title.data, content = form.content.data, category = form.category.data, price = form.price.data, city=form.city.data, user_id = current_user.get_id())
         db.session.add(advert)
         db.session.commit()
         flash("Pomyślnie dodano ogłoszenie!")
         return redirect(url_for('home'))
-    return render_template('advert.html', form=form, title='Dodaj ogłoszenie')
+    return render_template('advert.html', form=form, title_form = title_form, title='Dodaj ogłoszenie')
 
 @app.route("/<string:category>")
 def search(category):
     ads = Advert.query.filter_by(category = category).all()
     return render_template('search.html', ads=ads, title=category.capitalize() )
 
-@app.route("/ogloszenie/<string:advert_id>")
+@app.route("/ogloszenie/<int:advert_id>")
 def show_advert(advert_id):
     advert = Advert.query.get_or_404(advert_id)
     return render_template('show_ad.html',title = advert.title, advert=advert)
@@ -68,3 +69,29 @@ def account():
     ads = Advert.query.filter_by(user_id = user.id)
     number_of_ads = Advert.query.filter_by(user_id = user.id).count()
     return render_template('user.html', user=user, ads = ads, number_of_ads=number_of_ads, title="Konto użytkownika {}".format(user.username.capitalize()))
+
+@app.route("/moje-ogloszenia/<int:advert_id>/edytuj", methods=['GET', 'POST'])
+@login_required
+def update_advert(advert_id):
+    advert = Advert.query.get_or_404(advert_id)
+    form = AdvertForm()
+    title_form = "Edytuj ogłoszenie"
+    if form.validate_on_submit():
+        advert.title = form.title.data
+        advert.content = form.content.data
+        advert.category = form.category.data
+        advert.price = form.price.data
+        advert.city = form.city.data
+        db.session.commit()
+        flash("Pomyślnie edytowano ogłoszenie!")
+        return redirect(url_for('show_advert', advert_id = advert.id))
+    return render_template('advert.html', form=form, title_form = title_form, title='Edytuj ogłoszenie')
+
+@app.route("/moje-ogloszenia/<int:advert_id>/usun")
+@login_required
+def delete_advert(advert_id):
+    advert = Advert.query.get_or_404(advert_id)
+    db.session.delete(advert)
+    db.session.commit()
+    flash("Usunięto ogłoszenie!")
+    return redirect(url_for('account'))
