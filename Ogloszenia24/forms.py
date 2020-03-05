@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from Ogloszenia24.models import User
 
@@ -23,6 +23,7 @@ class RegistrationForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
     username = StringField("Nazwa użytkownika", validators=[DataRequired(), Length(min=5, max=20)])
     email = StringField("Email", validators=[DataRequired(), Email()])
+    telephone = IntegerField("Telefon")
     submit = SubmitField("Rejestracja")
 
     def validate_username(self, username):
@@ -46,10 +47,15 @@ class AdvertForm(FlaskForm):
     content = TextAreaField('Treść', validators=[DataRequired()])
     category = SelectField('Kategoria', validators=[DataRequired()], choices=[('motoryzacja','Motoryzacja'), ('nieruchomosci','Nieruchomości'), ('elektronika','Elektronika'), ('praca',
     'Praca'), ('zabawki','Zabawki'), ('odziez','Odzież'), ('obuwie','Obuwie'), ('sport','Sport'), ('silownia','Siłownia'), ('odzywianie','Odżywianie'), ('zabytki','Zabytki'), ('meble','Meble')])
-    price = StringField('Cena', validators=[DataRequired()])
+    price = IntegerField('Cena', validators=[DataRequired()])
     city = StringField('Miasto', validators=[DataRequired()])
     submit = SubmitField('Dodaj')
 
 class SearchForm(FlaskForm):
     title = StringField('Tytuł ogloszzenia', validators=[DataRequired()])
     submit = SubmitField('Szukaj!')
+
+class MessageForm(FlaskForm):
+    title = StringField('Tytuł', validators=[DataRequired()])
+    message = TextAreaField('Treść', validators=[DataRequired()])
+    submit = SubmitField('Wyślij')

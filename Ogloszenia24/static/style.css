@@ -1,6 +1,7 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -35,8 +36,8 @@ ul{
 }
 
 #add{
-    background-color: #F64C72;
-    border: 1.5px solid #242582;
+  background-color: #F64C72;
+  border: 1.5px solid #242582;
 }
 
 .nav-list ul li a{
@@ -57,6 +58,10 @@ a{
 
 h1{
   color: white;
+}
+
+.flash-messages{
+  background-color: #88fca7;
 }
 
 main{
@@ -146,8 +151,8 @@ main{
 .column{
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
   justify-content: center;
+  align-content: center;
 }
 
 .category-item{
@@ -164,7 +169,6 @@ main{
   background-color: white;
   width: 60%;
   padding: 10px;
-  box-sizing: border-box;
   border-radius: 10px;
 }
 
@@ -172,7 +176,6 @@ main{
   border: 1px solid black;
   margin-bottom: 10px;
   padding: 10px;
-  box-sizing: border-box;
   height: 100px;
 }
 
@@ -188,12 +191,15 @@ main{
   width: 60%;
   display: flex;
   justify-content: space-around;
-  align-content: center;
   background-color: white;
   border-radius: 10px;
   margin-bottom: 30px;
 }
 
+.newest-ads-title{
+  display: flex;
+  justify-content: center;
+}
 .newest-ads{
   width: 100%;
   display: flex;
@@ -203,7 +209,6 @@ main{
 
 .newest-ad{
   border: 1px solid black;
-  box-sizing: border-box;
   width: 18%;
   padding: 5px;
   height: 100px;
@@ -218,8 +223,45 @@ main{
   border-radius: 10px;
 }
 
+.user-ads{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .user-ad{
   border: 1px solid black;
   padding: 10px;
   box-sizing: border-box;
+  margin-bottom: 10px;
+  width: 33%;
+}
+
+.edit{
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-ad{
+  background-color: #739fff;
+  border: 1px solid black;
+  font-size: 0.8em;
+  width: 45%;
+}
+
+.delete-ad{
+  background-color: #f53131;
+  border: 1px solid black;
+  font-size: 0.8em;
+  display: flex;
+  width: 45%;
+}
+
+.ad-info{
+  background-color: white;
+  width: 50%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

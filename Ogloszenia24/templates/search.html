@@ -46,13 +46,15 @@
         </div>
    </div>
   <div class="ad-list">
-    {% if not ads %}
-      <h1>Brak ogłoszeń</h1>
+    {% if ads.items|length==0 %}
+      <h2>Brak ogłoszeń!</h2>
     {% else %}
-      {% for advert in ads %}
+      {% for advert in ads.items %}
         <div class='ad'>
           <a href='{{ url_for('show_advert', advert_id = advert.id) }}'><h2>{{ advert.title }}</h2></a>
-          <p>Data opublikowania: {{ advert.date.strftime('%Y-%m-%d') }}</p>
+          <small>Data opublikowania: {{ advert.date.strftime('%Y-%m-%d') }}</small>
+          <p>{{ advert.city }}</p>
+          <h4>Cena: {{ advert.price }} zł</h4>
         </div>
       {% endfor %}
     {% endif %}

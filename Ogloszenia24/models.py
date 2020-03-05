@@ -12,12 +12,16 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(100), nullable=False, unique=True)
     adverts = db.relationship('Advert', backref='autor', lazy=True)
+    messages_sent = db.relationship('Message',foreign_keys='Message.sender_id', backref='author', lazy='dynamic')
+    messages_received = db.relationship('Message',foreign_keys='Message.recipient_id', backref='recipient', lazy='dynamic')
+    telephone = db.Column(db.String(15))
 
     def __repr__(self):
         return f"Uzytkownik('{self.username}', '{self.email}'"
 
 
 class Advert(db.Model):
+
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
     title = db.Column(db.String(100), nullable=False)
@@ -29,3 +33,15 @@ class Advert(db.Model):
 
     def __repr__(self):
         return f"Ogloszenie('{self.title}', '{self.date}', '{self.category}')"
+
+class Message(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    title = db.Column(db.String(100), nullable=False)
+    body = db.Column(db.String(300), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"Wiadomosc('{self.body}')"
