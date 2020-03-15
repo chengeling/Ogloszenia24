@@ -1,14 +1,14 @@
 from Ogloszenia24 import app, db, bcrypt
 from Ogloszenia24.models import User, Advert, Message
 from flask import render_template, url_for, flash, redirect, abort, request
-from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, SearchForm, UpdateAccountForm, MessageForm
+from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, UpdateAccountForm, MessageForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/',  methods=['GET', 'POST'])
 def home():
-    form = SearchForm()
     new_ads = Advert.query.order_by(Advert.date.desc()).paginate(per_page=5)
-    return render_template('home.html', form=form, new_ads = new_ads, title='Ogloszenia24 - najlepsze ogloszenia w sieci!')
+    number_of_ads = len(Advert.query.all())
+    return render_template('home.html', number_of_ads = number_of_ads, new_ads = new_ads, title='Ogloszenia24 - najlepsze ogloszenia w sieci!')
 
 @app.route('/rejestracja', methods=['GET', 'POST'])
 def register():
@@ -39,7 +39,7 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route("/dodaj-ogloszenie", methods=['GET', 'POST'])
+@app.route("/dodaj-ogloszenie/", methods=['GET', 'POST'])
 @login_required
 def add_advert():
     form = AdvertForm()
@@ -57,12 +57,15 @@ def add_advert():
     return render_template('advert.html', form=form, title_form = title_form, title='Dodaj ogłoszenie')
 
 @app.route("/<string:category>/")
-def search(category):
-    ads = Advert.query.filter_by(category = category).order_by(Advert.date.desc()).paginate(per_page=5)
+def search_results(category):
+    page = request.args.get("page", default = 1, type=int)
+    ads = Advert.query.filter_by(category = category).order_by(Advert.date.desc()).paginate(per_page=4)
+    if ads.total > 0:
+        cat = Advert.query.filter_by(category = category).first().category
+        return render_template('search.html', ads=ads, cat=cat, title=category.capitalize())
     return render_template('search.html', ads=ads, title=category.capitalize())
 
-@app.route("/ogloszenie/<int:advert_id>", methods=['POST', 'GET'])
-@login_required
+@app.route("/ogloszenie/<int:advert_id>/", methods=['POST', 'GET'])
 def show_advert(advert_id):
     form = MessageForm()
     advert = Advert.query.get_or_404(advert_id)
@@ -74,18 +77,31 @@ def show_advert(advert_id):
         return redirect(url_for('home'))
     return render_template('show_ad.html',title = advert.title, form = form, advert=advert)
 
-@app.route("/moje-konto", methods=['GET', 'POST'])
+@app.route("/moje-konto/", methods=['GET', 'POST'])
 @login_required
 def account():
     user = current_user
-    ads = Advert.query.filter_by(user_id = user.id)
     number_of_ads = Advert.query.filter_by(user_id = user.id).count()
-    messages = Message.query.filter_by(recipient_id = user.id)
+    page = request.args.get("page", default = 1, type=int)
+    ads = Advert.query.filter_by(user_id = user.id).order_by(Advert.date.desc()).paginate(per_page=3)
     return render_template('user.html', user=user, ads = ads,messages = messages, number_of_ads=number_of_ads, title="Konto użytkownika {}".format(user.username.capitalize()))
+
+@app.route("/moje-konto/wiadomosci", methods=['GET', 'POST'])
+@login_required
+def messages():
+    user = current_user
+    #messages_reveived = Message.query.filter_by(recipient_id = user.id)
+    #messeges_send = Message.query.filter_by(sender_id = user.id)
+    select = request.form.get("mess_select")
+    if select == 'send':
+        messages = Message.query.filter_by(sender_id = user.id)
+    else:
+        messages = Message.query.filter_by(recipient_id = user.id)
+    return render_template('messages.html', messages=messages)
 
 @app.route("/moje-ogloszenia/<int:advert_id>/edytuj", methods=['GET', 'POST'])
 @login_required
-def update_advert(advert_id):
+def update_advert(advert_id, advert_title):
     advert = Advert.query.get_or_404(advert_id)
     form = AdvertForm()
     title_form = "Edytuj ogłoszenie"
@@ -100,7 +116,7 @@ def update_advert(advert_id):
         return redirect(url_for('show_advert', advert_id = advert.id))
     return render_template('advert.html', form=form, title_form = title_form, title='Edytuj ogłoszenie')
 
-@app.route("/moje-ogloszenia/<int:advert_id>/usun")
+@app.route("/moje-ogloszenia/<int:advert_id>/usun/")
 @login_required
 def delete_advert(advert_id):
     advert = Advert.query.get_or_404(advert_id)

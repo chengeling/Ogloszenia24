@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="messages">
+  <div class="message-form">
+    <form action="{{ url_for('messages') }}" method="POST">
+      <select name='mess_select' class="form-input">
+        <option value="received">Otrzymane</option>
+        <option value="send">Wysłane</option>
+      </select>
+      <button type="submit" class="sbt-btn">Typ</button>
+    </form>
+  </div>
+  {% for message in messages %}
+    <div class="message">
+      <p>Wiadomość od użytkownika {{ message.author.username }}</p>
+      <p>Tytuł: {{ message.title }}</p>
+      <p>Treść : {{ message.body }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

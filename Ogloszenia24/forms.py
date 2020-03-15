@@ -4,11 +4,11 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from Ogloszenia24.models import User
 
 class RegistrationForm(FlaskForm):
-    username = StringField("Nazwa użytkownika", validators=[DataRequired(), Length(min=5, max=20)])
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    password = PasswordField("Hasło", validators=[DataRequired()])
-    confirm_password = PasswordField("Potwierdź hasło", validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField("Rejestracja")
+    username = StringField("Nazwa użytkownika", render_kw={"placeholder": "Nazwa użytkownika"}, validators=[DataRequired(), Length(min=5, max=20)])
+    email = StringField("Email", render_kw={"placeholder": "Email"}, validators=[DataRequired(), Email()])
+    password = PasswordField("Hasło", render_kw={"placeholder": "Hasło"}, validators=[DataRequired()])
+    confirm_password = PasswordField("Potwierdź hasło", render_kw={"placeholder": "Potwierdź hasło"}, validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField("Zarejestruj się")
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
@@ -38,8 +38,8 @@ class UpdateAccountForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Hasło', validators=[DataRequired()])
+    email = StringField('Email', render_kw={"placeholder": "Email"}, validators=[DataRequired(), Email()])
+    password = PasswordField('Hasło', render_kw={"placeholder": "Hasło"}, validators=[DataRequired()])
     submit = SubmitField('Zaloguj')
 
 class AdvertForm(FlaskForm):
@@ -50,11 +50,7 @@ class AdvertForm(FlaskForm):
     price = IntegerField('Cena', validators=[DataRequired()])
     city = StringField('Miasto', validators=[DataRequired()])
     submit = SubmitField('Dodaj')
-
-class SearchForm(FlaskForm):
-    title = StringField('Tytuł ogloszzenia', validators=[DataRequired()])
-    submit = SubmitField('Szukaj!')
-
+    
 class MessageForm(FlaskForm):
     title = StringField('Tytuł', validators=[DataRequired()])
     message = TextAreaField('Treść', validators=[DataRequired()])

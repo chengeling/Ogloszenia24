@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
 <section class="search">
-  <h1>Szukaj ofert sposród najlepszych ogłoszeń w sieci!</h1>
+  <div class="site-welcome-info">
+    <h1>Szukaj ofert sposród {{ number_of_ads }} najlepszych ogłoszeń w sieci!</h1>
+  </div>
   <div class="search-box">
-    <form action="" method='GET'>
-      {{ form.title (class='search-input') }}
-      {{ form.submit (class='search-btn') }}
+    <form action="{{ url_for('home') }}" method='POST'>
+      <input name="title">
+      <input type="submit">
     </form>
   </div>
 </section>
@@ -16,55 +18,55 @@
     <div class="column">
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='motoryzacja') }}">Motoryzacja</a>
+        <a href="{{ url_for('search_results', category='motoryzacja') }}">Motoryzacja</a>
+      </div>
+      <div class="category-item">
+        <img src="/static/house-icon.svg" alt="" height="35px" width="35px">
+        <a href="{{ url_for('search_results', category='nieruchomosci') }}">Nieruchomości</a>
       </div>
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='nieruchomosci') }}">Nieruchomości</a>
+        <a href="{{ url_for('search_results', category='elektronika') }}">Elektronika</a>
       </div>
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='elektronika') }}">Elektronika</a>
-      </div>
-      <div class="category-item">
-        <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='praca') }}">Praca</a>
-      </div>
-    </div>
-    <div class="column">
-      <div class="category-item">
-        <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='zabawki') }}">Zabawki</a>
-      </div>
-      <div class="category-item">
-        <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='odziez') }}">Odzież</a>
-      </div>
-      <div class="category-item">
-        <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='obuwie') }}">Obuwie</a>
-      </div>
-      <div class="category-item">
-        <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='sport') }}">Sport</a>
+        <a href="{{ url_for('search_results', category='praca') }}">Praca</a>
       </div>
     </div>
     <div class="column">
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='silownia') }}">Siłownia</a>
+        <a href="{{ url_for('search_results', category='zabawki') }}">Zabawki</a>
       </div>
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='odzywianie') }}">Odżywianie</a>
+        <a href="{{ url_for('search_results', category='odziez') }}">Odzież</a>
       </div>
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='zabytki') }}">Zabytki</a>
+        <a href="{{ url_for('search_results', category='obuwie') }}">Obuwie</a>
       </div>
       <div class="category-item">
         <img src="/static/car.png" alt="" height="35px" width="35px">
-        <a href="{{ url_for('search', category='meble') }}">Meble</a>
+        <a href="{{ url_for('search_results', category='sport') }}">Sport</a>
+      </div>
+    </div>
+    <div class="column">
+      <div class="category-item">
+        <img src="/static/car.png" alt="" height="35px" width="35px">
+        <a href="{{ url_for('search_results', category='silownia') }}">Siłownia</a>
+      </div>
+      <div class="category-item">
+        <img src="/static/car.png" alt="" height="35px" width="35px">
+        <a href="{{ url_for('search_results', category='odzywianie') }}">Odżywianie</a>
+      </div>
+      <div class="category-item">
+        <img src="/static/car.png" alt="" height="35px" width="35px">
+        <a href="{{ url_for('search_results', category='zabytki') }}">Zabytki</a>
+      </div>
+      <div class="category-item">
+        <img src="/static/car.png" alt="" height="35px" width="35px">
+        <a href="{{ url_for('search_results', category='meble') }}">Meble</a>
       </div>
     </div>
 </section>
@@ -75,7 +77,7 @@
   {% for ad in new_ads.items %}
   <div class="newest-ad">
     <h2><a href="{{ url_for('show_advert', advert_id=ad.id) }}"> {{ ad.title }} </a></h2>
-    <p>Kategoria: <a href="{{ url_for('search', category=ad.category) }}"> {{ ad.category }} </a></p>
+    <p>Kategoria: <a href="{{ url_for('search_results', category=ad.category) }}"> {{ ad.category }} </a></p>
     <p>Cena: {{ ad.price }} zł</p>
     <small>Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
   </div>

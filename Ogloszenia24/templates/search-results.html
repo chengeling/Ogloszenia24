@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="filter-ads">
+  <div class="ad-list">
+      {% for res in results.items %}
+        <div class='ad'>
+          <h2>{{ res.title }}</h2></a>
+          <small>Data opublikowania: {{ res.date.strftime('%Y-%m-%d') }}</small>
+          <p>{{ res.city }}</p>
+          <h4>Cena: {{ res.price }} zł</h4>
+        </div>
+      {% endfor %}
+  </div>
+</section>
+{% endblock %}

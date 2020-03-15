@@ -4,44 +4,44 @@
   <div class="category-section-search">
         <div class="column">
           <div class="category-item">
-            <a href="{{ url_for('search', category='motoryzacja') }}">Motoryzacja</a>
+            <a href="{{ url_for('search_results', category='motoryzacja') }}">Motoryzacja</a>
           </div>
           <div class="category-item">
-            <a href="{{ url_for('search', category='nieruchomsci') }}">Nieruchomości</a>
+            <a href="{{ url_for('search_results', category='nieruchomsci') }}">Nieruchomości</a>
           </div>
           <div class="category-item">
-            <a href="{{ url_for('search', category='elektronika') }}">Elektronika</a>
+            <a href="{{ url_for('search_results', category='elektronika') }}">Elektronika</a>
           </div>
           <div class="category-item">
-            <a href="{{ url_for('search', category='praca') }}">Praca</a>
-          </div>
-        </div>
-        <div class="column">
-          <div class="category-item">
-            <a href="{{ url_for('search', category='zabawki') }}">Zabawki</a>
-          </div>
-          <div class="category-item">
-            <a href="{{ url_for('search', category='odziez') }}">Odzież</a>
-          </div>
-          <div class="category-item">
-            <a href="{{ url_for('search', category='obuwie') }}">Obuwie</a>
-          </div>
-          <div class="category-item">
-            <a href="{{ url_for('search', category='sport') }}">Sport</a>
+            <a href="{{ url_for('search_results', category='praca') }}">Praca</a>
           </div>
         </div>
         <div class="column">
           <div class="category-item">
-            <a href="{{ url_for('search', category='silownia') }}">Siłownia</a>
+            <a href="{{ url_for('search_results', category='zabawki') }}">Zabawki</a>
           </div>
           <div class="category-item">
-            <a href="{{ url_for('search', category='odzywianie') }}">Odżywianie</a>
+            <a href="{{ url_for('search_results', category='odziez') }}">Odzież</a>
           </div>
           <div class="category-item">
-            <a href="{{ url_for('search', category='zabytki') }}">Zabytki</a>
+            <a href="{{ url_for('search_results', category='obuwie') }}">Obuwie</a>
           </div>
           <div class="category-item">
-            <a href="{{ url_for('search', category='meble') }}">Meble</a>
+            <a href="{{ url_for('search_results', category='sport') }}">Sport</a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='silownia') }}">Siłownia</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='odzywianie') }}">Odżywianie</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='zabytki') }}">Zabytki</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='meble') }}">Meble</a>
           </div>
         </div>
    </div>
@@ -53,11 +53,18 @@
         <div class='ad'>
           <a href='{{ url_for('show_advert', advert_id = advert.id) }}'><h2>{{ advert.title }}</h2></a>
           <small>Data opublikowania: {{ advert.date.strftime('%Y-%m-%d') }}</small>
-          <p>{{ advert.city }}</p>
+          <p>Miasto: {{ advert.city }}</p>
           <h4>Cena: {{ advert.price }} zł</h4>
         </div>
       {% endfor %}
     {% endif %}
+    <div class="pages">
+    {% for page_num in ads.iter_pages() %}
+        {% if page_num %}
+          <a href="{{ url_for('search_results', page=page_num, category=cat) }}">{{ page_num }}</a>
+        {% endif %}
+    {% endfor %}
+    </div>
   </div>
 </section>
 {% endblock %}

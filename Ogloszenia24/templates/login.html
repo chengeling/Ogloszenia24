@@ -1,38 +1,37 @@
-{% extends 'layout.html' %}
+{% extends "layout-register-login.html" %}
 {% block content %}
-<div class="register-form">
-  <div class="log-in">
-    <img src="/static/user-icon.png" alt="" height="100px" width="100px">
-  </div>
-  <div class="login-form register-form">
-    <form action="" method='POST' class='form'>
-      {{ form.hidden_tag() }}
-      <div class="form-group">
-        {{ form.email.label }}
-        {{ form.email }}
-        {% if form.email.errors %}
-          <ul class="errors">
+  <div class="login-form">
+    <div class="log-in-pic">
+      <img src="/static/user-icon.png" alt="" height="100px" width="100px">
+    </div>
+    <h2>Logowanie</h2>
+      <form action="" method='POST' class='form'>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.email(class="form-input") }}
+          {% if form.email.errors %}
+          <div class="errors">
             {% for error in form.email.errors %}
-              <li>{{ error }}</li>
+              <p class="error">{{ error }}</p>
             {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="form-group">
-        {{ form.password.label }}
-        {{ form.password }}
-        {% if form.password.errors %}
-          <ul class="errors">
-            {% for error in form.password.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      <div class="submit">
-        {{ form.submit (class='sbt-btn') }}
-      </div>
-    </form>
-  </div>
-</div>
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.password(class="form-input") }}
+          {% if form.password.errors %}
+          <div class="errors">
+              {% for error in form.password.errors %}
+              <p class="error">jeab</p>
+              {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="submit">
+          {{ form.submit (class='sbt-btn') }}
+        </div>
+      </form>
+      <small>Nie posiadasz jeszcze konta?<a href="{{ url_for('register')}}" class="back-home">Załóż konto</a></small>
+      <a href="{{ url_for('home')}}" class="back-home"><small>Wróć do strony głównej</small></a>
+    </div>
 {% endblock %}

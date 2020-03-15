@@ -83,7 +83,6 @@ main{
   justify-content: center;
 }
 
-
 .search-box{
   background-color: #2F2FA2;
   width: 60%;
@@ -97,20 +96,28 @@ main{
 .form-group{
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
 }
 
-.register-form{
+.register-form, .login-form{
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
   padding: 15px;
+  justify-content: space-between;
 }
 
-.log-in{
+.login-form{
+  height: 450px;
+  margin-top: 100px;
+}
+
+.register-form{
+  height: 600px;
+  margin-top: 100px;
 }
 
 .sbt-btn{
@@ -118,6 +125,14 @@ main{
   border-radius: 10px;
   padding: 10px;
   border: none;
+  width: 150px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease-out;
+}
+
+.sbt-btn:hover{
+  transform: scale(1.1);
 }
 
 .categories{
@@ -173,7 +188,7 @@ main{
 }
 
 .ad{
-  border: 1px solid black;
+  border: 1px solid #d1dae0;
   margin-bottom: 10px;
   padding: 10px;
   height: 100px;
@@ -203,15 +218,16 @@ main{
 .newest-ads{
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   margin-bottom: 10px;
 }
 
 .newest-ad{
-  border: 1px solid black;
-  width: 18%;
+  border: 1px solid #d1dae0;
+  width: 20%;
   padding: 5px;
   height: 100px;
+  margin-right: 10px;
 }
 
 .user-info{
@@ -226,7 +242,6 @@ main{
 .user-ads{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
 .user-ad{
@@ -234,34 +249,130 @@ main{
   padding: 10px;
   box-sizing: border-box;
   margin-bottom: 10px;
-  width: 33%;
+  width: 100%;
+}
+
+
+.error{
+  color: red;
+  font-size: 0.8rem;
 }
 
 .edit{
   display: flex;
-  justify-content: space-between;
 }
 
 .edit-ad{
   background-color: #739fff;
   border: 1px solid black;
-  font-size: 0.8em;
-  width: 45%;
+  padding: 5px;
+  text-align: center;
+  margin-right: 10px;
 }
 
 .delete-ad{
   background-color: #f53131;
   border: 1px solid black;
-  font-size: 0.8em;
-  display: flex;
-  width: 45%;
+  padding: 5px;
+  text-align: center;
 }
+
 
 .ad-info{
   background-color: white;
+  border-radius: 5px;
   width: 50%;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.login-page{
+  height: 100vh;
+  background-color: #4e86d9;
+  display: flex;
+  justify-content: center;
+}
+
+.back-home{
+  margin-top: 5px;
+}
+
+.back-home:hover{
+  color: #63c1ff;
+}
+
+.form-input{
+  width: 300px;
+  height: 40px;
+  padding: 5px;
+  border: none;
+  border: 2px solid #e3e3e3;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.form-large-input{
+  border:none;
+  border: 2px solid #e3e3e3;
+  border-radius: 10px;
+}
+
+.add-advert-form{
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 35%;
+}
+
+.add-advert-form h2{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.add-advert-form .sbt-btn{
+  margin-left: 35%;
+  margin-top: 20px;
+}
+
+.pages{
+  display: flex;
+  justify-content: center;
+}
+
+.pages a{
+  margin-right: 4px;
+}
+
+.pages a:hover{
+  color: #4e86d9;
+}
+
+#advert-title{
+  border-bottom: 1px solid black;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.messages{
+  width: 50%;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.message{
+  background-color: #ebedeb;
+  padding: 5px;
+  border-radius: 3px;
+}
+.message-form{
+  display: flex;
+  justify-content: center;
+}
+
+.message-form  button{
+  margin-left: 15px;
 }

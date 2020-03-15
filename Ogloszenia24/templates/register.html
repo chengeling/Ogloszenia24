@@ -1,58 +1,57 @@
-{% extends 'layout.html' %}
+{% extends "layout-register-login.html" %}
 {% block content %}
 <div class="register-form">
-  <div class="log-in">
+  <div class="log-in-pic">
     <img src="/static/register-icon.png" alt="" height="100px" width="100px">
   </div>
+  <h2>Rejestracja</h2>
   <form action="" method='POST' class='form'>
     {{ form.hidden_tag() }}
     <div class="form-group">
-      {{ form.username.label }}
-      {{ form.username }}
+      {{ form.username(class="form-input") }}
       {% if form.username.errors %}
-        <ul class="errors">
+        <div class="errors">
           {% for error in form.username.errors %}
-            <li>{{ error }}</li>
+            <p class="error">{{ error }}</p>
           {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     </div>
     <div class="form-group">
-      {{ form.email.label }}
-      {{ form.email }}
+      {{ form.email(class="form-input") }}
       {% if form.email.errors %}
-        <ul class="errors">
+        <div class="errors">
           {% for error in form.email.errors %}
-            <li>{{ error }}</li>
+            <p class="error">{{ error }}</p>
           {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     </div>
     <div class="form-group">
-      {{ form.password.label }}
-      {{ form.password }}
+      {{ form.password(class="form-input") }}
       {% if form.password.errors %}
-        <ul class="errors">
+        <div class="errors">
           {% for error in form.password.errors %}
-            <li>{{ error }}</li>
+            <p class="error">{{ error }}</p>
           {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     </div>
     <div class="form-group">
-      {{ form.confirm_password.label }}
-      {{ form.confirm_password }}
+      {{ form.confirm_password(class="form-input") }}
       {% if form.confirm_password.errors %}
-        <ul class="errors">
-          {% for error in form.confirm_password.errors %}
-            <li>{{ error }}</li>
+        <div class="errors">
+          {% for error in form.password.errors %}
+            <p class="error">{{ error }}</p>
           {% endfor %}
-        </ul>
+        </div>
       {% endif %}
     </div>
     <div class="submit">
       {{ form.submit (class='sbt-btn') }}
     </div>
+    <small>Masz już konto?<a href="{{ url_for('login')}}" class="back-home">Zaloguj się</a></small>
+    <a href="{{ url_for('home')}}" class="back-home"><small>Wróć do strony głównej</small></a>
   </form>
 </div>
 {% endblock %}
