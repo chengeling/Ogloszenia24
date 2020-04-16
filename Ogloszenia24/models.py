@@ -1,6 +1,7 @@
 from Ogloszenia24 import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
+from Ogloszenia24 import app
 
 @login_manager.user_loader
 def load_user(id):
@@ -21,6 +22,7 @@ class User(db.Model, UserMixin):
 
 
 class Advert(db.Model):
+    __searchable__ = ['title']
 
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
@@ -33,7 +35,7 @@ class Advert(db.Model):
 
     def __repr__(self):
         return f"Ogloszenie('{self.title}', '{self.date}', '{self.category}')"
-
+        
 class Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)

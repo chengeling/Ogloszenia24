@@ -1,14 +1,19 @@
 from Ogloszenia24 import app, db, bcrypt
 from Ogloszenia24.models import User, Advert, Message
 from flask import render_template, url_for, flash, redirect, abort, request
-from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, UpdateAccountForm, MessageForm
+from Ogloszenia24.forms import RegistrationForm, LoginForm, AdvertForm, UpdateAccountForm, MessageForm, SearchForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/',  methods=['GET', 'POST'])
 def home():
+    form = SearchForm()
+    if form.validate_on_submit():
+        tag = "%{}%".format(form.title.data)
+        query = Advert.query.filter(Advert.title.like(tag)).all()
+        return render_template('search-results.html', query=query)
     new_ads = Advert.query.order_by(Advert.date.desc()).paginate(per_page=5)
     number_of_ads = len(Advert.query.all())
-    return render_template('home.html', number_of_ads = number_of_ads, new_ads = new_ads, title='Ogloszenia24 - najlepsze ogloszenia w sieci!')
+    return render_template('home.html', form=form, number_of_ads = number_of_ads, new_ads = new_ads, title='Ogloszenia24 - najlepsze ogloszenia w sieci!')
 
 @app.route('/rejestracja', methods=['GET', 'POST'])
 def register():
@@ -32,6 +37,8 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             return redirect(url_for('home'))
+        elif user is None:
+            flash("Błędny login lub hasło. Spróbuj ponownie")
     return render_template('login.html', form=form, title='Zaloguj się')
 
 @app.route("/logout")

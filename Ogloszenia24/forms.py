@@ -50,7 +50,11 @@ class AdvertForm(FlaskForm):
     price = IntegerField('Cena', validators=[DataRequired()])
     city = StringField('Miasto', validators=[DataRequired()])
     submit = SubmitField('Dodaj')
-    
+
+class SearchForm(FlaskForm):
+    title = StringField('Nazwa ogłoszenia', render_kw={"placeholder": "Wpisz tytuł ogłoszenia..."}, validators=[DataRequired()])
+    submit = SubmitField('Szukaj')
+
 class MessageForm(FlaskForm):
     title = StringField('Tytuł', validators=[DataRequired()])
     message = TextAreaField('Treść', validators=[DataRequired()])

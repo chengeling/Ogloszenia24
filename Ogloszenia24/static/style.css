@@ -5,6 +5,12 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+:root {
+  --primary-color: #3e5ca8;
+  --secondary-color: #8BD8BD;
+  --orange-color: rgb(255, 113, 18);
+}
+/*
 nav{
   display: flex;
   justify-content: space-around;
@@ -65,32 +71,51 @@ h1{
 }
 
 main{
-  background-color: #fcfff2;
-  padding: 10px;
+  box-sizing: border-box;
   display: flex;
-  justify-content: center;
-  background-image: url("mainphoto.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100vw;
+  max-width: 100vw;
   height: 100vh;
 }
 
 .search{
-  width: 80%;
+  background-image: url("mainphoto.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 900px;
+  min-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .search-box{
   background-color: #2F2FA2;
-  width: 60%;
-  height: 60px;
+  min-width: 450px;
+  width: 60vw;
+  min-height: 60px;
   border-radius: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  animation-name: appear;
+  animation-duration: 3s;
+}
+
+@keyframes appear{
+from{
+  margin-right: -300%;
+}
+to{
+  margin-right: 0%;
+}
 }
 
 .form-group{
@@ -98,6 +123,19 @@ main{
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+
+.login-page{
+  min-height: 700px;
+  width: 100%;
+  min-width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(9,64,121,1) 47%, rgba(0,212,255,1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 }
 
 .register-form, .login-form{
@@ -108,6 +146,18 @@ main{
   border-radius: 10px;
   padding: 15px;
   justify-content: space-between;
+  min-width: 300px;
+  border: 2px solid rgb(156, 154, 154);
+  box-shadow: 3px 3px 10px rgb(78, 78, 78);
+}
+
+.register-form input, .login-form input{
+  transition: 0.5s ease-out;
+  box-shadow: 3px 3px 3px rgb(182, 181, 181);
+}
+
+.register-form input:focus, .login-form input:focus{
+  border-color: rgb(141, 141, 141);
 }
 
 .login-form{
@@ -118,6 +168,19 @@ main{
 .register-form{
   height: 600px;
   margin-top: 100px;
+}
+
+.login-error li{
+  color: red;
+}
+
+.log-in-pic{
+  position: relative;
+  top: -65px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid black;
 }
 
 .sbt-btn{
@@ -138,18 +201,19 @@ main{
 .categories{
   display: flex;
   justify-content: center;
+  min-width: 100%;
   width: 100%;
 }
 
 .category-section{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 15px;
   padding: 20px;
-  width: 70%;
+  min-width: 100vw;
+  width: 100%;
   position: relative;
 }
-
 
 .category-item{
   margin-bottom: 30px;
@@ -192,6 +256,7 @@ main{
   margin-bottom: 10px;
   padding: 10px;
   height: 100px;
+  box-shadow: 3px 4px 10px #ccc;
 }
 
 
@@ -216,6 +281,7 @@ main{
   justify-content: center;
 }
 .newest-ads{
+  min-width: 100vh;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -228,6 +294,7 @@ main{
   padding: 5px;
   height: 100px;
   margin-right: 10px;
+  box-shadow: 3px 4px 10px #ccc;
 }
 
 .user-info{
@@ -288,12 +355,6 @@ main{
   align-items: center;
 }
 
-.login-page{
-  height: 100vh;
-  background-color: #4e86d9;
-  display: flex;
-  justify-content: center;
-}
 
 .back-home{
   margin-top: 5px;
@@ -376,3 +437,48 @@ main{
 .message-form  button{
   margin-left: 15px;
 }
+
+input:focus, select:focus{
+  outline: none;
+}
+
+.search-input{
+  height: 30px;
+  width: 300px;
+}
+
+.search-btn{
+  height: 30px;
+  width: 100px;
+  border: none;
+  border-radius: 3px;
+  background-color:  #4e86d9;
+  transition: 1s;
+}
+
+.search-btn:hover{
+  background-color: #2b6fd6;
+}
+
+@media (max-width: 768px){
+
+
+  .category-item img{
+    display: none;
+  }
+
+  .newest-ads{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .newest-ad{
+    width: 85vw;
+    margin-bottom: 10px;
+  }
+}
+
+*/

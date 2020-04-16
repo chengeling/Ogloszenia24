@@ -1,15 +1,60 @@
 {% extends "layout.html" %}
 {% block content %}
 <section class="filter-ads">
-  <div class="ad-list">
-      {% for res in results.items %}
-        <div class='ad'>
-          <h2>{{ res.title }}</h2></a>
-          <small>Data opublikowania: {{ res.date.strftime('%Y-%m-%d') }}</small>
-          <p>{{ res.city }}</p>
-          <h4>Cena: {{ res.price }} zł</h4>
+  <div class="category-section-search">
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='motoryzacja') }}">Motoryzacja</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='nieruchomsci') }}">Nieruchomości</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='elektronika') }}">Elektronika</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='praca') }}">Praca</a>
+          </div>
         </div>
-      {% endfor %}
-  </div>
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='zabawki') }}">Zabawki</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='odziez') }}">Odzież</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='obuwie') }}">Obuwie</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='sport') }}">Sport</a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='silownia') }}">Siłownia</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='odzywianie') }}">Odżywianie</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='zabytki') }}">Zabytki</a>
+          </div>
+          <div class="category-item">
+            <a href="{{ url_for('search_results', category='meble') }}">Meble</a>
+          </div>
+        </div>
+   </div>
+  <div class="filter-ads">
+    <div class="ad-list">
+        {% for res in query %}
+          <div class='ad'>
+            <h2><a href="{{ url_for('show_advert', advert_id=res.id) }}"> {{ res.title }} </a></h2>
+            <small>Data opublikowania: {{ res.date.strftime('%Y-%m-%d') }}</small>
+            <p>{{ res.city }}</p>
+            <h4>Cena: {{ res.price }} zł</h4>
+          </div>
+        {% endfor %}
+    </div>
 </section>
 {% endblock %}

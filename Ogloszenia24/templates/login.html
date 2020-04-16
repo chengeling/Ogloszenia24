@@ -5,6 +5,15 @@
       <img src="/static/user-icon.png" alt="" height="100px" width="100px">
     </div>
     <h2>Logowanie</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=login-error>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+  {% endif %}
+  {% endwith %}
       <form action="" method='POST' class='form'>
         {{ form.hidden_tag() }}
         <div class="form-group">

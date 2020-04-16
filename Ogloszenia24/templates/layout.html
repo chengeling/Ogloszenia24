@@ -6,29 +6,51 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='megaphone.png')}}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css')}}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
   <title>{{ title }}</title>
 </head>
 <body>
-  <nav>
-    <div class="nav-logo">
-      <a href="{{ url_for('home')}}"><img src="/static/megaphone.png" alt="logo" height="70px" width="70px"></a>
-      <h2>Ogloszenia24</h2>
-    </div>
-    <div class="nav-list">
-      <ul>
-        {% if current_user.is_authenticated %}
-              <li id="add"><a href="{{ url_for('add_advert')}}">Dodaj Ogłoszenie +</a></li>
-              <li><a href="{{ url_for('account') }}">{{ current_user.username }}</a></li>
-              <li><a href="{{ url_for('messages')}}">Wiadomości</a></li>
-              <li><a href="{{ url_for('logout')}}">Wyloguj</a></li>
-            {% else %}
-              <li><a href="{{ url_for('login')}}">Logowanie</a></li>
-              <li><a href="{{ url_for('register')}}">Rejestracja</a></li>
-            {% endif %}
-      </ul>
-    </div>
-  </nav>
+  <!-- navigation -->
+    <nav class="nav">
+      <div class="nav__logo">
+        <a href="{{ url_for('home')}}">
+          <img class="nav__logo-image" src="/static/megaphone.png">
+        </a>
+        <h2 class="nav__logo-text">Ogloszenia24</h2>
+      </div>
+        <ul class="nav__list">
+          {% if current_user.is_authenticated %}
+                <li class="nav__list-item"><a class="nav__list-item-anchor" href="{{ url_for('add_advert')}}">Dodaj Ogłoszenie</a></li>
+                <li class="nav__list-item"><a class="nav__list-item-anchor" href="{{ url_for('account') }}">{{ current_user.username }}</a></li>
+                <li class="nav__list-item"><a class="nav__list-item-anchor" href="{{ url_for('messages')}}">Wiadomości</a></li>
+                <li class="nav__list-item"><a class="nav__list-item-anchor" href="{{ url_for('logout')}}">Wyloguj</a></li>
+              {% else %}
+                <li class="nav__list-item"><a class="nav__list-item-anchor" href="{{ url_for('login')}}">Logowanie</a></li>
+                <li class="nav__list-item"><a class="nav__list-item-anchor" href="{{ url_for('register')}}">Rejestracja</a></li>
+              {% endif %}
+        </ul>
+        <button class="nav__hamburger js-nav__hamburger">
+         <img src="/static/hamburger.png" alt="BTN">
+        </button>
+    </nav>
+
+    <script type="text/javascript">
+        (() => {
+          const button = document.querySelector(".nav__hamburger");
+          const menu = document.querySelector(".nav__list");
+
+          const toggleClass = () => {
+            menu.classList.toggle("nav__list--open");
+          };
+
+          button.addEventListener("click", toggleClass);
+          menu.addEventListener("click", toggleClass);
+        })();
+    </script>
+  <!--end of navigation-->
+
   <div class="flash-messages">
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -40,12 +62,11 @@
     {% endif %}
     {% endwith %}
   </div>
-  <main>
+  <main class="container">
     {% block content %}
     {% endblock %}
-  </main>
-  {% block categories %}
-  {% endblock %}
+    {% block categories %}
+    {% endblock %}
   </main>
 </body>
 </html>
