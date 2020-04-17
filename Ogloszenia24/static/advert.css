@@ -1,0 +1,77 @@
+.add-container{
+    height: 88vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.add-advert{
+    width: 600px;
+    min-width: 300px;
+    padding: 17px;
+}
+.add-advert__header{
+    font-size: 32px;
+    margin-bottom: 18px;
+}
+
+.add-advert__form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.add-advert__form-group-input {
+    padding: 5px;
+    border: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 3px 5px #ccc;
+}
+
+.add-advert__form-group-input:focus {
+    outline: none;
+    border: 1px solid rgb(231, 61, 61);
+}
+
+.add-advert__form-group-input-large {
+    resize: none;
+}
+
+.add-advert__form-group-input-category{
+    width: 200px;
+}
+
+.add-advert__form-group-input-city{
+    width: 280px;
+}
+
+.add-advert__form-group-input-price{
+    width: 150px;
+}
+
+.add-advert__form-submit{
+    display: flex;
+    justify-content: center;
+}
+
+.add-advert__form-submit-btn{
+    width: 40%;
+    margin-bottom: 18px;
+    padding: 7px;
+    height: 36px;
+    border: none;
+    border-radius: 14px;
+    background-color: rgb(79, 150, 216);
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.add-advert__form-submit-btn:hover{
+    background-color: rgb(44, 131, 212);
+}
+
+.add-advert__form-group-label{
+    margin-bottom: 5px;
+}

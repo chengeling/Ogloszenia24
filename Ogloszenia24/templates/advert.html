@@ -1,58 +1,62 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="add-advert-form">
-  <h2>{{ title_form }}</h2>
-  <form action="" method='POST'>
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-      {{ form.title.label }}
-      {{ form.title(class="form-input") }}
-      {% if form.title.errors %}
-        <ul class="errors">
-          {% for error in form.title.errors %}
+<div class="add-container">
+  <div class="add-advert">
+    <h2 class="add-advert__header">{{ title_form }}</h2>
+    <form class="add-advert__form" action="" method='POST'>
+      {{ form.hidden_tag() }}
+      <div class="add-advert__form-group">
+        {{ form.title.label(class="add-advert__form-group-label") }}
+        {{ form.title(class="add-advert__form-group-input") }}
+        {% if form.title.errors %}
+          <ul class="errors">
+            {% for error in form.title.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="add-advert__form-group">
+        {{ form.content.label(class="add-advert__form-group-label") }}
+        {{ form.content(class="add-advert__form-group-input add-advert__form-group-input-large", rows='20', cols='50') }}
+        {% if form.content.errors %}
+          <ul class="errors">
+            {% for error in form.content.errors %}
             <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.content.label }}
-      {{ form.content(class="form-large-input", rows='15', cols='40') }}
-      {% if form.content.errors %}
-        <ul class="errors">
-          {% for error in form.content.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.category.label }}
-      {{ form.category(class="form-input") }}
-    </div>
-    <div class="form-group">
-      {{ form.price.label }}
-      {{ form.price(class="form-input") }}
-      {% if form.price.errors %}
-        <ul class="errors">
-          {% for error in form.price.errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.city.label }}
-      {{ form.city(class="form-input") }}
-      {% if form.city.errors %}
-        <ul class="errors">
-          {% for error in form.city.errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-    {{ form.submit(class='sbt-btn') }}
-  </form>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="add-advert__form-group">
+        {{ form.category.label(class="add-advert__form-group-label") }}
+        {{ form.category(class="add-advert__form-group-input add-advert__form-group-input-category") }}
+      </div>
+      <div class="add-advert__form-group">
+        {{ form.price.label(class="add-advert__form-group-label") }}
+        {{ form.price(class="add-advert__form-group-input add-advert__form-group-input-price") }}
+        {% if form.price.errors %}
+          <ul class="errors">
+            {% for error in form.price.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="add-advert__form-group">
+        {{ form.city.label(class="add-advert__form-group-label") }}
+        {{ form.city(class="add-advert__form-group-input add-advert__form-group-input-city") }}
+        {% if form.city.errors %}
+          <ul class="errors">
+            {% for error in form.city.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="add-advert__form-submit">
+      {{ form.submit(class='add-advert__form-submit-btn') }}
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}

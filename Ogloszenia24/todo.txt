@@ -1,5 +1,0 @@
-Co jeszcze do zrobienia
-Backend:
-- edycja profilu
-- przypominenie has�a
-- filtrowanie po miastach, cenach

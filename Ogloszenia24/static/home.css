@@ -9,6 +9,7 @@
   background: var(--primary-color);
   padding: 15px 10px;
   overflow: hidden;
+  height: 12vh;
 }
 
 .nav__logo {
