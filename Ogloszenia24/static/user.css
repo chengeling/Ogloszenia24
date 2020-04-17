@@ -1,0 +1,72 @@
+.user-container {
+    width: 85%;
+    border: 1px solid #ccc;
+    box-shadow: 2px 4px 8px #ddd;
+    margin: 15px auto;
+    padding: 15px;
+}
+.user-info__user-ads{
+    margin: 25px;
+    text-align: center;
+}
+.user-info__ad-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    justify-content: center;
+    gap: 15px;
+}
+
+.user-info__ad-list-item{
+    border: 1px solid #ccc;
+    box-shadow: 2px 3px 5px #ddd;
+    padding: 9px;
+}
+
+.user-info__ad-list-item-title{
+    text-decoration: none;
+    font-size: 24px;
+    color: black;
+    border-bottom: 1px solid #ccc;
+    display: block;
+}
+
+.user-info__ad-list-item-category a{
+    text-decoration: none;
+    color: black;
+}
+
+.user-info__ad-list-item-change{
+    display: flex;
+}
+
+.user-info__ad-list-item-change--edit,
+.user-info__ad-list-item-change--delete{
+    width: 25%;
+    border-radius: 15px;
+    padding: 4px;
+    text-align: center;
+    margin: 5px;
+}
+
+.user-info__ad-list-item-change--edit{
+    background-color: blue;
+}
+.user-info__ad-list-item-change--delete{
+    background: red;
+}
+
+.user-info__ad-list-item-change--edit a,
+.user-info__ad-list-item-change--delete a {
+    text-decoration: none;
+    color: white;
+}
+
+.user-info__ad-list-pages{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.user-info__ad-list-pages-number{
+    text-decoration: none;
+    color: black;
+}

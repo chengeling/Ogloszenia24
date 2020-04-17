@@ -9,9 +9,9 @@
         {{ form.title.label(class="add-advert__form-group-label") }}
         {{ form.title(class="add-advert__form-group-input") }}
         {% if form.title.errors %}
-          <ul class="errors">
+          <div class="errors">
             {% for error in form.title.errors %}
-              <li>{{ error }}</li>
+              <p class="error">{{ error }}</li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -20,9 +20,9 @@
         {{ form.content.label(class="add-advert__form-group-label") }}
         {{ form.content(class="add-advert__form-group-input add-advert__form-group-input-large", rows='20', cols='50') }}
         {% if form.content.errors %}
-          <ul class="errors">
+          <div class="errors">
             {% for error in form.content.errors %}
-            <li>{{ error }}</li>
+              <p class="error">{{ error }}</li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -35,9 +35,9 @@
         {{ form.price.label(class="add-advert__form-group-label") }}
         {{ form.price(class="add-advert__form-group-input add-advert__form-group-input-price") }}
         {% if form.price.errors %}
-          <ul class="errors">
+          <div class="errors">
             {% for error in form.price.errors %}
-              <li>{{ error }}</li>
+              <p class="error">{{ error }}</li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -46,9 +46,9 @@
         {{ form.city.label(class="add-advert__form-group-label") }}
         {{ form.city(class="add-advert__form-group-input add-advert__form-group-input-city") }}
         {% if form.city.errors %}
-          <ul class="errors">
+          <div class="errors">
             {% for error in form.city.errors %}
-              <li>{{ error }}</li>
+              <p class="error">{{ error }}</li>
             {% endfor %}
           </ul>
         {% endif %}

@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='register-login.css')}}"/>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='advert.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='user.css')}}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
   <script src="../static/scripts.js"></script>
@@ -21,7 +22,13 @@
         <a href="{{ url_for('home')}}">
           <img class="nav__logo-image" src="/static/megaphone.png">
         </a>
-        <h2 class="nav__logo-text">Ogloszenia24</h2>
+        <a href="{{ url_for('home')}}">
+          <h2 class="nav__logo-text">
+            <a class="nav__logo-text-anchor" href="{{ url_for('home')}}">
+              Ogłoszenia24
+            </a>
+          </h2>
+        </a>
       </div>
         <ul class="nav__list">
           {% if current_user.is_authenticated %}

@@ -24,8 +24,9 @@
   width: 64px;
 }
 
-.nav__logo-text{
+.nav__logo-text-anchor{
   color: var(--secondary-color);
+  text-decoration: none;
 }
 
 .nav__list{
@@ -140,10 +141,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 40px;
+  gap: 25px;
   align-items: center;
-  width: 80%;
-  margin: 20px auto;
+  justify-content: end;
+  width: 100%;
+  margin: 20px;
 }
 
 .categories__item {
@@ -268,12 +270,10 @@
     white-space: nowrap;
     padding: 15px;
   }
-  
+
   .categories__item{
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-    align-items: center;
+    margin-left: 0;
+    margin-right: 15px;
   }
 
   .newest-ads{

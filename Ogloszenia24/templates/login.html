@@ -9,9 +9,9 @@
         <div class="login__form-group">
           {{ form.email(class="login__form-group-input") }}
           {% if form.email.errors %}
-          <div class="login__form-errors">
+          <div class="errors">
             {% for error in form.email.errors %}
-              <p class="login__form-error">{{ error }}</p>
+              <p class="error">{{ error }}</p>
             {% endfor %}
           </div>
           {% endif %}
@@ -19,9 +19,9 @@
         <div class="login__form-group">
           {{ form.password(class="login__form-group-input") }}
           {% if form.password.errors %}
-          <div class="login__form-errors">
+          <div class="errors">
               {% for error in form.password.errors %}
-              <p class="login__form-error">{{ error }}</p>
+              <p class="error">{{ error }}</p>
               {% endfor %}
           </div>
           {% endif %}

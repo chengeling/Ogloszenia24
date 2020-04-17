@@ -10,6 +10,21 @@
   --secondary-color: #8BD8BD;
   --orange-color: rgb(255, 113, 18);
 }
+.container{
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.flash-messages {
+  background-color: rgb(83, 207, 83);
+}
+
+.error{
+  color: red;
+  font-size: 13px;
+  margin: 5px;
+}
 /*
 nav{
   display: flex;

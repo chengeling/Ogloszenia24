@@ -36,14 +36,14 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
+            flash("Pomyślnie zalogowano!")
             return redirect(url_for('home'))
-        elif user is None:
-            flash("Błędny login lub hasło. Spróbuj ponownie")
     return render_template('login.html', form=form, title='Zaloguj się')
 
 @app.route("/logout")
 def logout():
     logout_user()
+    flash("Wylogowano się pomyślnie!")
     return redirect(url_for('home'))
 
 @app.route("/dodaj-ogloszenie/", methods=['GET', 'POST'])
@@ -52,7 +52,7 @@ def add_advert():
     form = AdvertForm()
     title_form = "Dodaj ogłoszenie"
     user_ads = Advert.query.filter_by(user_id = current_user.id).count()
-    if user_ads >= 9:
+    if user_ads == 12:
         flash("Osiągnięto limit ogłoszeń!")
         return redirect(url_for('home'))
     elif form.validate_on_submit():
@@ -90,7 +90,7 @@ def account():
     user = current_user
     number_of_ads = Advert.query.filter_by(user_id = user.id).count()
     page = request.args.get("page", default = 1, type=int)
-    ads = Advert.query.filter_by(user_id = user.id).order_by(Advert.date.desc()).paginate(per_page=3)
+    ads = Advert.query.filter_by(user_id = user.id).order_by(Advert.date.desc()).paginate(per_page=6)
     return render_template('user.html', user=user, ads = ads,messages = messages, number_of_ads=number_of_ads, title="Konto użytkownika {}".format(user.username.capitalize()))
 
 @app.route("/moje-konto/wiadomosci", methods=['GET', 'POST'])
@@ -108,10 +108,10 @@ def messages():
 
 @app.route("/moje-ogloszenia/<int:advert_id>/edytuj", methods=['GET', 'POST'])
 @login_required
-def update_advert(advert_id, advert_title):
+def update_advert(advert_id):
     advert = Advert.query.get_or_404(advert_id)
     form = AdvertForm()
-    title_form = "Edytuj ogłoszenie"
+    title_form = "Edytuj ogłoszenie: " + advert.title
     if form.validate_on_submit():
         advert.title = form.title.data
         advert.content = form.content.data

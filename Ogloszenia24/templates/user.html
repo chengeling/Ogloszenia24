@@ -1,35 +1,37 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="user-info">
-  <h2>Twoje dane</h2>
-  <h4>Nazwa użytkownika: {{ user.username }}</h4>
-  <h4>Adres email: {{ user.email }}</h4>
-  <p>Posiadasz {{ number_of_ads }} ogłoszeń</p>
-  <p>Do wykoszytania masz <strong>{{ 9 - number_of_ads }}</strong> ogłoszeń</p>
-  <h2>Twoje ogłoszenia: </h2>
-  <div class="user-ads">
-    {% for ad in ads.items %}
-    <div class="user-ad">
-      <h2><a href="{{ url_for('show_advert', advert_id=ad.id) }}"> {{ ad.title }}</a></h2>
-      <hr>
-      <p>Kategoria: <a href="{{ url_for('search_results', category=ad.category) }}"> {{ ad.category }} </a></p>
-      <p>Cena: {{ ad.price }} zł</p>
-      <small> Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
-      <div class="edit">
-        <div class="edit-ad"><a href="{{ url_for('update_advert', advert_id=ad.id) }}">Edytuj</a></div>
-        <div class="delete-ad"><a href="{{ url_for('delete_advert', advert_id=ad.id) }}">Usuń</a></div>
+<div class="user-container">
+  <div class="user-info">
+    <h2 class="user-info__header">Twoje dane</h2>
+    <h4 class="user-info__username">Nazwa użytkownika: {{ user.username }}</h4>
+    <p class="user-info__ads-number">Posiadasz <strong>{{ number_of_ads }}</strong> ogłoszeń</p>
+    <p class="user-info__ads-remaining">Do wykoszytania masz <strong>{{ 12 - number_of_ads }}</strong> ogłoszeń</p>
+    <h3 class="user-info__user-ads">Twoje ogłoszenia: </h2>
+    <div class="user-info__ad-list">
+      {% for ad in ads.items %}
+      <div class="user-info__ad-list-item">
+        <a class="user-info__ad-list-item-title" href="{{ url_for('show_advert', advert_id=ad.id) }}"> {{ ad.title }}</a>
+        <p class="user-info__ad-list-item-category">Kategoria: <a href="{{ url_for('search_results', category=ad.category) }}"> {{ ad.category }} </a></p>
+        <p class="user-info__ad-list-item-price">Cena: {{ ad.price }} zł</p>
+        <small class="user-info__ad-list-item-date"> Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
+        <div class="user-info__ad-list-item-change">
+          <div class="user-info__ad-list-item-change--edit">
+            <a href="{{ url_for('update_advert', advert_id=ad.id ) }}">Edytuj</a>
+          </div>
+          <div class="user-info__ad-list-item-change--delete">
+            <a href="{{ url_for('delete_advert', advert_id=ad.id) }}">Usuń</a>
+          </div>
+        </div>
       </div>
+      {% endfor %}
     </div>
+    <div class="user-info__ad-list-pages">
+    {% for page_num in ads.iter_pages() %}
+        {% if page_num %}
+          <a class="user-info__ad-list-pages-number" href="{{ url_for('account', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
     {% endfor %}
-  </div>
-  <div class="pages">
-  {% for page_num in ads.iter_pages() %}
-      {% if page_num %}
-        <a href="{{ url_for('account', page=page_num) }}">{{ page_num }}</a>
-      {% else %}
-        ...
-      {% endif %}
-  {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock %}

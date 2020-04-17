@@ -10,6 +10,11 @@ app.config['SECRET_KEY'] = '7fd1296cc2172fe50e424c5f71837bc6'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 login_manager = LoginManager(app)
 login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+    
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
 bcrypt = Bcrypt(app)
