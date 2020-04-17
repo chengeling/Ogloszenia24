@@ -1,59 +1,57 @@
-{% extends "layout-register-login.html" %}
+{% extends "layout.html" %}
 {% block content %}
-<div class="register-form">
-  <div class="log-in-pic">
-    <img src="/static/register-icon.png" alt="" height="100px" width="100px">
+<div class="register-container">
+  <div class="register">
+    <img class="register__image" src="/static/register-icon.png" alt="" height="100px" width="100px">
+    <h2 class="register__header">Rejestracja</h2>
+    <form class="register__form"action="" method='POST' class='form'>
+      {{ form.hidden_tag() }}
+      <div class="register__form-group">
+        {{ form.username(class="register__form-group-input") }}
+        {% if form.username.errors %}
+          <div class="form__errors">
+            {% for error in form.username.errors %}
+              <p class="form__error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="register__form-group">
+        {{ form.email(class="register__form-group-input") }}
+        {% if form.email.errors %}
+          <div class="form__errors">
+            {% for error in form.email.errors %}
+              <p class="form__error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="register__form-group">
+        {{ form.password(class="register__form-group-input") }}
+        {% if form.password.errors %}
+          <div class="form__errors">
+            {% for error in form.password.errors %}
+              <p class="form__error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="register__form-group">
+        {{ form.confirm_password(class="register__form-group-input") }}
+        {% if form.confirm_password.errors %}
+          <div class="form__errors">
+            {% for error in form.password.errors %}
+              <p class="form__error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="register__form-submit">
+        {{ form.submit (class='register__form-submit-btn') }}
+      </div>
+      <small class="register__form-login">Masz już konto?<a href="{{ url_for('login')}}" class="register__form-login-anchor">Zaloguj się</a></small>
+      <a class="register__form-back-home" href="{{ url_for('home')}}">Wróć do strony głównej</a>
+    </form>
   </div>
-  <h2>Rejestracja</h2>
-  <div class="flash-messages">
-  </div>
-  <form action="" method='POST' class='form'>
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-      {{ form.username(class="form-input") }}
-      {% if form.username.errors %}
-        <div class="errors">
-          {% for error in form.username.errors %}
-            <p class="error">{{ error }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.email(class="form-input") }}
-      {% if form.email.errors %}
-        <div class="errors">
-          {% for error in form.email.errors %}
-            <p class="error">{{ error }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.password(class="form-input") }}
-      {% if form.password.errors %}
-        <div class="errors">
-          {% for error in form.password.errors %}
-            <p class="error">{{ error }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.confirm_password(class="form-input") }}
-      {% if form.confirm_password.errors %}
-        <div class="errors">
-          {% for error in form.password.errors %}
-            <p class="error">{{ error }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    <div class="submit">
-      {{ form.submit (class='sbt-btn') }}
-    </div>
-    <small>Masz już konto?<a href="{{ url_for('login')}}" class="back-home">Zaloguj się</a></small>
-    <a href="{{ url_for('home')}}" class="back-home"><small>Wróć do strony głównej</small></a>
-  </form>
 </div>
 {% endblock %}

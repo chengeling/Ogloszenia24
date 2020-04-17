@@ -1,0 +1,96 @@
+.register-container,
+.login-container {
+    height: 100vh;
+    width: 100%;
+    min-height: 600px;
+    background: rgb(2,0,36);
+    background: linear-gradient(336deg, rgba(2,0,36,1) 0%, rgba(52,127,187,1) 0%, rgba(47,118,255,1) 0%, rgba(93,200,228,1) 62%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.register,
+.login {
+    background-color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 420px;
+    min-width: 310px;
+}
+
+.register__image,
+.login__image {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: -70px;
+    background-color: rgb(238, 235, 235);
+    border-radius: 50%;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.register__header,
+.login__header {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+.register__form-group,
+.login__form-group{
+    margin-bottom: 24px;
+}
+
+
+.register__form-group-input,
+.login__form-group-input{
+    width: 90%;
+    padding: 10px;
+    border: none;
+    border: 1px solid #ddd;
+    box-shadow: 2px 3px 5px #ccc;
+    transition: 0.3s;
+}
+
+.register__form-group-input:focus,
+.login__form-group-input:focus{
+    border: 1px solid rgb(88, 172, 211);
+    outline: none;
+}
+
+.register__form-submit-btn,
+.login__form-group-submit-btn{
+    width: 37%;
+    height: 32px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(85, 179, 223);
+    font-weight: bold;
+    transition: 0.5s;
+    margin-bottom: 10px;
+}
+
+.register__form-submit-btn:hover,
+.login__form-group-submit-btn:hover {
+    background-color: rgb(38, 162, 219);
+    transform: scale(1.1);
+}
+
+.register__form-back-home,
+.login__form-back-home{
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.register__form-login-anchor,
+.login__form-register-anchor{
+    text-decoration: none;
+    color: rgb(36, 129, 190);
+}

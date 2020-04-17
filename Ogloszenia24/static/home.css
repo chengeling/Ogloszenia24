@@ -38,7 +38,6 @@
   position: relative;
 }
 
-
 .nav__list-item-anchor{
   text-decoration: none;
   color: var(--secondary-color);
@@ -134,7 +133,7 @@
   background-color: rgb(57, 105, 209);
 }
 
-/* categories */
+/*----------------- categories -----------------*/
 
 .categories {
   display: grid;
@@ -176,7 +175,7 @@
 }
 
 .newest-ad__list-item{
-  border: 1px solid black;
+  border: 1px solid #ddd;
   padding: 15px;
   box-shadow: 3px 4px 10px #ccc;
   width: 18%;

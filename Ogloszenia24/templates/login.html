@@ -1,46 +1,37 @@
-{% extends "layout-register-login.html" %}
+{% extends "layout.html" %}
 {% block content %}
-  <div class="login-form">
-    <div class="log-in-pic">
-      <img src="/static/user-icon.png" alt="" height="100px" width="100px">
-    </div>
-    <h2>Logowanie</h2>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul class=login-error>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-  {% endif %}
-  {% endwith %}
-      <form action="" method='POST' class='form'>
+<div class="login-container">
+  <div class="login">
+    <img class="login__image" src="/static/user-icon.png" alt="" height="100px" width="100px">
+    <h2 class="login__header">Logowanie</h2>
+      <form class="login__form" action="" method='POST'>
         {{ form.hidden_tag() }}
-        <div class="form-group">
-          {{ form.email(class="form-input") }}
+        <div class="login__form-group">
+          {{ form.email(class="login__form-group-input") }}
           {% if form.email.errors %}
-          <div class="errors">
+          <div class="login__form-errors">
             {% for error in form.email.errors %}
-              <p class="error">{{ error }}</p>
+              <p class="login__form-error">{{ error }}</p>
             {% endfor %}
           </div>
           {% endif %}
         </div>
-        <div class="form-group">
-          {{ form.password(class="form-input") }}
+        <div class="login__form-group">
+          {{ form.password(class="login__form-group-input") }}
           {% if form.password.errors %}
-          <div class="errors">
+          <div class="login__form-errors">
               {% for error in form.password.errors %}
-              <p class="error">jeab</p>
+              <p class="login__form-error">{{ error }}</p>
               {% endfor %}
           </div>
           {% endif %}
         </div>
-        <div class="submit">
-          {{ form.submit (class='sbt-btn') }}
+        <div class="login__form-group-submit">
+          {{ form.submit (class='login__form-group-submit-btn') }}
         </div>
       </form>
-      <small>Nie posiadasz jeszcze konta?<a href="{{ url_for('register')}}" class="back-home">Załóż konto</a></small>
-      <a href="{{ url_for('home')}}" class="back-home"><small>Wróć do strony głównej</small></a>
+      <small class="login__form-register">Nie posiadasz jeszcze konta?<a class="login__form-register-anchor" href="{{ url_for('register')}}">Załóż konto</a></small>
+      <a class="login__form-back-home" href="{{ url_for('home')}}">Wróć do strony głównej</a>
     </div>
+  </div>
 {% endblock %}
