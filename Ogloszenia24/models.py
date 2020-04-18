@@ -43,6 +43,7 @@ class Message(db.Model):
     recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     title = db.Column(db.String(100), nullable=False)
     body = db.Column(db.String(300), nullable=False)
+    advert_title = db.Column(db.String(100), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):

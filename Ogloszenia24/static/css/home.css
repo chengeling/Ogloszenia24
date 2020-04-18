@@ -71,7 +71,7 @@
 /*-----------------welcome page -----------------*/
 
 .welcome-page{
-  background-image: url("mainphoto.jpg");
+  background-image: url("../images/mainphoto.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -253,7 +253,7 @@
   }
 
   .welcome-page__form-form-submit{
-    background: url("./search-icon.svg");
+    background: url("../images/search-icon.svg");
     background-size: 30px;
     background-position: center;
     background-repeat: no-repeat;

@@ -77,12 +77,12 @@ def show_advert(advert_id):
     form = MessageForm()
     advert = Advert.query.get_or_404(advert_id)
     if form.validate_on_submit():
-        message = Message(title = form.title.data, body = form.message.data, sender_id = current_user.id, recipient_id = advert.user_id)
+        message = Message(title = form.title.data, body = form.message.data, sender_id = current_user.id, recipient_id = advert.user_id, advert_title = advert.title)
         db.session.add(message)
         db.session.commit()
         flash("Pomyślnie wysłano wiadomość")
         return redirect(url_for('home'))
-    return render_template('show_ad.html',title = advert.title, form = form, advert=advert)
+    return render_template('show_ad.html', title = advert.title, form = form, advert=advert)
 
 @app.route("/moje-konto/", methods=['GET', 'POST'])
 @login_required

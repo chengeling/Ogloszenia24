@@ -1,45 +1,44 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="ad-info">
-    <h2> Tytuł ogłoszenia: {{ advert.title }}</h2>
-    <p><strong>{{advert.city }}</strong> |  Dodane o {{ advert.date.strftime('%Y-%m-%d %H:%M') }} przez <a href="{{ url_for('account') }}">{{ advert.autor.username }}</a></p>
-    <p>Cena: <strong>{{ advert.price }} zł </strong></p>
-    <h3>Treść</h3>
-    <p>{{ advert.content }}</p>
-    <hr>
-    {% if current_user.is_authenticated and current_user.username != advert.autor.username%}
-      <div class="message-form">
-        <h3>Masz pytanie?</h3>
-        <form action="" method='POST'>
-          {{ form.hidden_tag() }}
-          <div class="form-group">
-            {{ form.title.label }}
-            {{ form.title }}
-            {% if form.title.errors %}
-              <ul class="errors">
-                {% for error in form.title.errors %}
-                  <li>{{ error }}</li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.message.label }}
-            {{ form.message(rows='10', cols='40') }}
+<div class="ad-info-container">
+  <div class="ad-info">
+    <h2 class="ad-info__title"> Tytuł ogłoszenia: {{ advert.title }}</h2>
+    <p class="ad-info__city"><strong>{{advert.city }}</strong> |  Dodane o {{ advert.date.strftime('%Y-%m-%d %H:%M') }} przez <a class="ad-info__username" href="{{ url_for('account') }}">{{ advert.autor.username }}</a></p>
+    <p class="ad-info__price">Cena: <strong>{{ advert.price }} zł </strong></p>
+    <p class="ad-info__content">{{ advert.content }}</p>
+    {% if current_user.is_authenticated and current_user.username != advert.autor.username %}
+    <h3 class="ad-info__question-header">Masz pytanie?</h3>
+    <form class="ad-info__message-form" action="" method='POST'>
+      {{ form.hidden_tag() }}
+        <div class="ad-info__message-form-group">
+          {{ form.title.label(class="ad-info__message-form-group-label") }}
+          {{ form.title(class="ad-info__message-form-group-input") }}
+          {% if form.title.errors %}
+            <div class="errors">
+              {% for error in form.title.errors %}
+                <p class="error">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="ad-info__message-form-group">
+          {{ form.message.label(class="ad-info__message-form-group-label") }}
+          {{ form.message(class="ad-info__message-form-group-input", rows='10', cols='40') }}
             {% if form.message.errors %}
-              <ul class="errors">
+              <div class="errors">
                 {% for error in form.content.errors %}
-                <li>{{ error }}</li>
+                <p class="error">{{ error }}</p>
                 {% endfor %}
-              </ul>
-            {% endif %}
+              </div>
+             {% endif %}
           </div>
-          {{ form.submit }}
+          {{ form.submit(class="ad-info__message-form-group-submit") }}
         </form>
       </div>
     {% elif current_user.username == advert.autor.username %}
     {% else %}
-      <h3>Aby zadać pytanie musisz się zalogować</h3>
+    <h3 class="ad-info__question-error">Aby zadać pytanie musisz się zalogować</h3>
     {% endif %}
+  </div>
 </div>
 {% endblock %}

@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from Ogloszenia24.models import User
 
 class RegistrationForm(FlaskForm):
-    username = StringField("Nazwa użytkownika", render_kw={"placeholder": "Nazwa użytkownika"}, validators=[DataRequired(), Length(min=5, max=20)])
+    username = StringField("Nazwa użytkownika", render_kw={"placeholder": "Nazwa użytkownika"}, validators=[DataRequired(), Length(min=5, max=20, message="Nazwa użytkownika powinna mieć od 5 do 20 znaków.")])
     email = StringField("Email", render_kw={"placeholder": "Email"}, validators=[DataRequired(), Email(message="Zły format adresu email")])
     password = PasswordField("Hasło", render_kw={"placeholder": "Hasło"}, validators=[DataRequired(), Length(min=6, max=30 , message="Hasło powinno mieć od 6 do 30 znaków")])
     confirm_password = PasswordField("Potwierdź hasło", render_kw={"placeholder": "Potwierdź hasło"}, validators=[DataRequired(), EqualTo('password', message="Hasła się nie zgadzają.")])

@@ -2,7 +2,7 @@
 {% block content %}
 <div class="register-container">
   <div class="register">
-    <img class="register__image" src="/static/register-icon.png" alt="" height="100px" width="100px">
+    <img class="register__image" src="{{ url_for('static', filename='images/register-icon.png')}}" alt="" height="100px" width="100px">
     <h2 class="register__header">Rejestracja</h2>
     <form class="register__form"action="" method='POST' class='form'>
       {{ form.hidden_tag() }}

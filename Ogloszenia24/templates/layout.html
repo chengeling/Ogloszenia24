@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='megaphone.png')}}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='register-login.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='advert.css')}}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='user.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/register-login.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/advert.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/user.css')}}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/show-ad.css')}}"/>
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
-  <script src="../static/scripts.js"></script>
   <title>{{ title }}</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
     <nav class="nav">
       <div class="nav__logo">
         <a href="{{ url_for('home')}}">
-          <img class="nav__logo-image" src="/static/megaphone.png">
+          <img class="nav__logo-image" src="{{ url_for('static', filename='images/megaphone.png')}}">
         </a>
         <a href="{{ url_for('home')}}">
           <h2 class="nav__logo-text">
@@ -42,7 +42,7 @@
               {% endif %}
         </ul>
         <button class="nav__hamburger js-nav__hamburger">
-         <img src="/static/hamburger.png" alt="BTN">
+         <img src="{{ url_for('static', filename='images/hamburger.png')}}" alt="BTN">
         </button>
     </nav>
 

@@ -13,6 +13,7 @@
   {% for message in messages %}
     <div class="message">
       <p>Wiadomość od użytkownika {{ message.author.username }}</p>
+      <p>Ogłoszenie {{ message.advert_title }}</p>
       <p>Tytuł: {{ message.title }}</p>
       <p>Treść : {{ message.body }}</p>
     </div>

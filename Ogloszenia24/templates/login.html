@@ -2,7 +2,7 @@
 {% block content %}
 <div class="login-container">
   <div class="login">
-    <img class="login__image" src="/static/user-icon.png" alt="" height="100px" width="100px">
+    <img class="login__image" src="{{ url_for('static', filename='images/user-icon.png')}}" alt="" height="100px" width="100px">
     <h2 class="login__header">Logowanie</h2>
       <form class="login__form" action="" method='POST'>
         {{ form.hidden_tag() }}
