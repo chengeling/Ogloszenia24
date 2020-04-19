@@ -1,5 +1,5 @@
 # Ogloszenia24 (ciągle w pracach)
-Aplikacja ogłoszeniowa
+Aplikacja ogłoszeniowa napisana w frameworku Flask. Umożliwia dodawanie, usuwanie, edycje ogłoszeń, wysyłanie wiadomości między użytkownikami, wyszukiwanie ogłoszeń
 
 ## Technologie 
 * HTML5/CSS3/BEM/RWD
