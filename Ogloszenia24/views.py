@@ -91,27 +91,27 @@ def account():
     number_of_ads = Advert.query.filter_by(user_id = user.id).count()
     page = request.args.get("page", default = 1, type=int)
     ads = Advert.query.filter_by(user_id = user.id).order_by(Advert.date.desc()).paginate(per_page=6)
-    return render_template('user.html', user=user, ads = ads,messages = messages, number_of_ads=number_of_ads, title="Konto użytkownika {}".format(user.username.capitalize()))
+    messages =  Message.query.all()
+
+    return render_template('user.html', user=user, ads = ads, number_of_ads=number_of_ads, messages = messages, title="Konto użytkownika {}".format(user.username.capitalize()))
 
 @app.route("/moje-konto/wiadomosci", methods=['GET', 'POST'])
 @login_required
 def messages():
     user = current_user
-    #messages_reveived = Message.query.filter_by(recipient_id = user.id)
-    #messeges_send = Message.query.filter_by(sender_id = user.id)
-    select = request.form.get("mess_select")
+    select = request.form.get("message_select")
     if select == 'send':
         messages = Message.query.filter_by(sender_id = user.id)
     else:
         messages = Message.query.filter_by(recipient_id = user.id)
-    return render_template('messages.html', messages=messages)
+    return render_template('messages.html', messages=messages, title = "Wiadomości")
 
 @app.route("/moje-ogloszenia/<int:advert_id>/edytuj", methods=['GET', 'POST'])
 @login_required
 def update_advert(advert_id):
     advert = Advert.query.get_or_404(advert_id)
     form = AdvertForm()
-    title_form = "Edytuj ogłoszenie: " + advert.title
+    title_form = f"Edytuj ogłoszenie {advert.title}"
     if form.validate_on_submit():
         advert.title = form.title.data
         advert.content = form.content.data

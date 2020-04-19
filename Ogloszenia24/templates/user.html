@@ -14,6 +14,14 @@
         <p class="user-info__ad-list-item-category">Kategoria: <a href="{{ url_for('search_results', category=ad.category) }}"> {{ ad.category }} </a></p>
         <p class="user-info__ad-list-item-price">Cena: {{ ad.price }} zł</p>
         <small class="user-info__ad-list-item-date"> Data dodania {{ ad.date.strftime('%Y-%m-%d %H:%M') }}</small>
+
+        {% set number_of_messages = namespace(value = 0) %}
+        {% for message in messages %}
+          {% if message.advert_title == ad.title %}
+            {% set number_of_messages.value = number_of_messages.value + 1 %}
+          {% endif %}
+        {% endfor %}
+          <p class="user-ifno__ad-list-item-messages"><i class="far fa-envelope"></i> {{ number_of_messages.value }}</p>
         <div class="user-info__ad-list-item-change">
           <div class="user-info__ad-list-item-change--edit">
             <a href="{{ url_for('update_advert', advert_id=ad.id ) }}">Edytuj</a>

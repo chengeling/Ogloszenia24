@@ -7,50 +7,54 @@
     <form class="register__form"action="" method='POST' class='form'>
       {{ form.hidden_tag() }}
       <div class="register__form-group">
+        <i class="far fa-user"></i>
         {{ form.username(class="register__form-group-input") }}
-        {% if form.username.errors %}
+      </div>
+      {% if form.username.errors %}
           <div class="errors">
             {% for error in form.username.errors %}
               <p class="error">{{ error }}</p>
             {% endfor %}
           </div>
         {% endif %}
-      </div>
       <div class="register__form-group">
+        <i class="far fa-envelope"></i>
         {{ form.email(class="register__form-group-input") }}
-        {% if form.email.errors %}
+      </div>
+      {% if form.email.errors %}
           <div class="errors">
             {% for error in form.email.errors %}
               <p class="error">{{ error }}</p>
             {% endfor %}
           </div>
         {% endif %}
-      </div>
       <div class="register__form-group">
+        <i class="fas fa-lock"></i>
         {{ form.password(class="register__form-group-input") }}
-        {% if form.password.errors %}
+      </div>
+      {% if form.password.errors %}
           <div class="errors">
             {% for error in form.password.errors %}
               <p class="error">{{ error }}</p>
             {% endfor %}
           </div>
         {% endif %}
-      </div>
       <div class="register__form-group">
+        <i class="fas fa-lock"></i>
         {{ form.confirm_password(class="register__form-group-input") }}
-        {% if form.confirm_password.errors %}
+      </div>
+      {% if form.confirm_password.errors %}
           <div class="errors">
             {% for error in form.password.errors %}
               <p class="error">{{ error }}</p>
             {% endfor %}
           </div>
         {% endif %}
-      </div>
       <div class="register__form-submit">
         {{ form.submit (class='register__form-submit-btn') }}
       </div>
       <small class="register__form-login">Masz już konto?<a href="{{ url_for('login')}}" class="register__form-login-anchor">Zaloguj się</a></small>
-      <a class="register__form-back-home" href="{{ url_for('home')}}">Wróć do strony głównej</a>
+      <a class="register__form-back-home" href="{{ url_for('home')}}"> <i class="fas fa-arrow-left"></i> Wróć do strony głównej</a>
     </form>
   </div>
 </div>

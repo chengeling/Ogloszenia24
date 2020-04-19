@@ -1,0 +1,46 @@
+.messages-container {
+    width: 100%;
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.messages{
+    border: 1px solid rgb(179, 177, 177);
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messages__message {
+    width: 70%;
+    border: 1px solid #ddd;
+    padding: 10px 17px;
+    margin-bottom: 16px;
+    box-shadow: 3px 2px 5px #ccc;
+}
+
+.messages__form {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.messages__form-select{
+    border-radius: 5px;
+    padding: 4px;
+    margin-right: 8px;
+    min-width: 180px;
+}
+
+.messages__form-btn{
+    padding: 4px 10px;
+    min-width: 100px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+}

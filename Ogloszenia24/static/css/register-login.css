@@ -51,7 +51,9 @@
 
 .register__form-group,
 .login__form-group{
-    margin-bottom: 24px;
+    margin: 12px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 3px 5px #ccc;
 }
 
 
@@ -60,14 +62,11 @@
     width: 90%;
     padding: 10px;
     border: none;
-    border: 1px solid #ddd;
-    box-shadow: 2px 3px 5px #ccc;
     transition: 0.3s;
 }
 
 .register__form-group-input:focus,
 .login__form-group-input:focus{
-    border: 1px solid rgb(88, 172, 211);
     outline: none;
 }
 
@@ -94,6 +93,7 @@
     display: block;
     text-decoration: none;
     color: black;
+    margin: 5px;
 }
 
 .register__form-login-anchor,

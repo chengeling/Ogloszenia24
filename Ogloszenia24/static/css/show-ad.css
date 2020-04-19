@@ -11,6 +11,7 @@
 .ad-info {  
     border: 1px solid #ccc;
     border-top: 3px solid rgb(218, 164, 65);
+    border-bottom: 3px solid rgb(218, 164, 65);
     border-radius: 10px;
     box-shadow: 2px 3px 5pc #ddd;
     width: 60%;
